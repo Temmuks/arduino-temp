@@ -9,17 +9,18 @@
 #include "secrets.h"
 
 //Wifi settings
-char ssid[] = SECRET_SSID;
-char password[] = SECRET_PASS;
+  char ssid[] = SECRET_SSID;
+  char password[] = SECRET_PASS;
 
 
 //API Settings
-char api[] = SECRET_API;
-int port = 8080;
-char endpoint[] = "/test";
+  char api[] = SECRET_API;
+  int port = 8080;
+  char endpoint[] = "/test";
 
-WiFiClient wifi;
-HttpClient client = HttpClient(wifi, api, port);
+// Client Inits
+  WiFiClient wifi;
+  HttpClient client = HttpClient(wifi, api, port);
 
 //Sensor Settings
   #define ONE_WIRE_BUS 2
@@ -27,8 +28,8 @@ HttpClient client = HttpClient(wifi, api, port);
   DallasTemperature sensors(&oneWire);
   int tempC;
   
-
-ArduinoLEDMatrix matrix;
+//LED Screen init
+  ArduinoLEDMatrix matrix;
 
 void setup() {
   // put your setup code here, to run once:
@@ -54,7 +55,7 @@ void setup() {
 }
 
 void loop() {
-  //Check if wifi is connected every loop
+  //Check if wifi is connected every loop and updates the LED screen with a happy face if it is connected, else it will show a warning on the LED screen!
   if (WiFi.status() == 3) {
     matrix.loadFrame(happy);
     delay(500);
@@ -70,13 +71,15 @@ void loop() {
   delay(5000);
 }
 
+  //Gets the temp from the sensor
   int sensorCheck(){
     sensors.requestTemperatures();
 
    return sensors.getTempCByIndex(0);
 
-  }
+}
 
+//Sends the temperature to backend server!
 void postTemp(int newTemp, HttpClient client) {
   String postData = String("{\"temp\":") + newTemp + "}";
   Serial.println("Sending postData...");
