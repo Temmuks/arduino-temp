@@ -44,26 +44,21 @@ void setup() {
 
   Serial.println("Connecting to Wifi...");
 
-  WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.println("...");
-    delay(1000);
-  }
-
-  Serial.println("Connected!");
-  matrix.loadFrame(happy);
+  wifiConnect();
 
   delay(1000);
 }
 
 void loop() {
   //Check if wifi is connected every loop and updates the LED screen with a happy face if it is connected, else it will show a warning on the LED screen!
-  if (WiFi.status() == 3) {
+  if (WiFi.status() != WL_CONNECTED) {
     matrix.loadFrame(happy);
     delay(500);
   } else {
     matrix.loadFrame(danger);
+    WiFi.disconnect();
+    delay(500);
+    wifiConnect();
     delay(500);
   }
 
@@ -104,4 +99,16 @@ void postTemp(int newTemp, HttpClient client) {
   Serial.println(statusCode);
   Serial.print("Response: ");
   Serial.println(response);
+}
+
+int wifiConnect() {
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.println("...");
+    delay(1000);
+  }
+
+  Serial.println("Connected!");
+  matrix.loadFrame(happy);
 }

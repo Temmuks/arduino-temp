@@ -63,8 +63,8 @@ const ChartComponent = () => {
             data={data}
             margin={{
               top: 5,
-              right: 20,
-              left: 30,
+              right: 35,
+              left: 35,
               bottom: 60,
             }}
           >
