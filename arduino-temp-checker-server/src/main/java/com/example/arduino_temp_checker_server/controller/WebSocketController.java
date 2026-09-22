@@ -5,27 +5,27 @@ import java.time.LocalDate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import com.example.arduino_temp_checker_server.model.Temperature;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class WebSocketController {
 
-    @MessageMapping("/temp")
-    @SendTo("/topic/getTemp")
-    public ResponseEntity<Temperature> getTemp(Temperature temp) {
-        temp.setDate(LocalDate.now());
-        return ResponseEntity.ok().build();
+    private SimpMessagingTemplate messagingTemplate;
+
+    public WebSocketController(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
     }
 
-    @PostMapping("/test")
-    @ResponseBody
+    @PostMapping("/temp")
     public Temperature postTemp(@RequestBody Temperature temp) {
         temp.setDate(LocalDate.now());
+        messagingTemplate.convertAndSend("/topic/temp", temp);
         return temp;
     }
 

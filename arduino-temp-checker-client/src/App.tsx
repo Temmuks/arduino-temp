@@ -1,7 +1,12 @@
 import "./App.css";
+import TempComponent from "./component/TempComponent";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <TempComponent />
+    </>
+  );
 }
 
 export default App;

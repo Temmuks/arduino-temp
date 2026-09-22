@@ -16,7 +16,7 @@
 //API Settings
   char api[] = SECRET_API;
   int port = 8080;
-  char endpoint[] = "/test";
+  char endpoint[] = "/temp";
 
 // Client Inits
   WiFiClient wifi;
@@ -68,7 +68,7 @@ void loop() {
 
   postTemp(tempC, client);
 
-  delay(5000);
+  delay(60000);
 }
 
   //Gets the temp from the sensor
