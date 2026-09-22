@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class WebSocketController {
@@ -37,6 +38,18 @@ public class WebSocketController {
     @GetMapping("/temps")
     public ResponseEntity<List> getAllTemps() {
         return temperatureService.getAllTemps();
+    }
+
+    @GetMapping("/temp/average")
+    public String getAverageTemp() {
+        // Hämta medeltemp senaste veckan
+        return new String();
+    }
+
+    @GetMapping("/temp/minmax")
+    public ResponseEntity<List> getMinMaxTemp() {
+
+        return temperatureService.getMinMaxTemp();
     }
 
 }

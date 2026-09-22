@@ -5,6 +5,7 @@ import TempComponent from "./component/TempComponent";
 function App() {
   return (
     <>
+      <h1>Temperature stats</h1>
       <TempComponent />
       <ChartComponent />
     </>
