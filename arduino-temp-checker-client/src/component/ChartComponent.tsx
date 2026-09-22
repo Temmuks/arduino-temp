@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Line,
   XAxis,
@@ -8,23 +9,14 @@ import {
   Legend,
   createHorizontalChart,
 } from "recharts";
+import type { TempType } from "../types/TempType";
+import ApiFetch from "../api/ApiFetch";
 
 type MockDataType = {
   min: number;
   max: number;
   date: string;
 };
-
-const data = [
-  { min: -12, max: 18, date: "2026-09-15" },
-  { min: 10, max: 16, date: "2026-09-16" },
-  { min: 11, max: 19, date: "2026-09-17" },
-  { min: -9, max: 15, date: "2026-09-18" },
-  { min: 13, max: 21, date: "2026-09-19" },
-  { min: 14, max: 30, date: "2026-09-20" },
-  { min: 12, max: 20, date: "2026-09-21" },
-  { min: -10, max: 17, date: "2026-09-22" },
-];
 
 const Typed = createHorizontalChart<MockDataType, string, number>()({
   XAxis,
@@ -34,6 +26,19 @@ const Typed = createHorizontalChart<MockDataType, string, number>()({
 });
 
 const ChartComponent = () => {
+  const [data, setData] = useState<TempType[]>([]);
+
+  useEffect(() => {
+    const fetchChartData = async () => {
+      const response = await ApiFetch.getChartData();
+      if (response) {
+        setData(response);
+      }
+    };
+
+    fetchChartData();
+  }, []);
+
   return (
     <div className="chartWrapper">
       <div className="chart">
@@ -58,14 +63,19 @@ const ChartComponent = () => {
             data={data}
             margin={{
               top: 5,
-              right: 0,
-              left: 0,
-              bottom: 5,
+              right: 20,
+              left: 30,
+              bottom: 60,
             }}
           >
             <CartesianGrid stroke="rgb(100, 100, 100)" />
             <ReferenceLine y={0} stroke="rgb(0, 174, 255)" strokeWidth={2} />
-            <Typed.XAxis dataKey="date" stroke="rgb(228, 129, 0)" />
+            <Typed.XAxis
+              dataKey="date"
+              stroke="rgb(228, 129, 0)"
+              interval={0}
+              tick={{ angle: -45, textAnchor: "end" }}
+            />
             <Typed.YAxis
               width="auto"
               domain={[-30, 30]}
@@ -79,7 +89,7 @@ const ChartComponent = () => {
                 fill: "rgba(255,255,255,0.05)",
               }}
             />
-            <Legend stroke="rgb(228, 129, 0)" />
+            <Legend stroke="rgb(228, 129, 0)" verticalAlign="top" />
             <Typed.Line
               dataKey="min"
               fill="rgb(0, 195, 255)"

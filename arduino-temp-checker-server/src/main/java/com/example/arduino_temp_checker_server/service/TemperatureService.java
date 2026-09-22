@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.IntSummaryStatistics;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -70,6 +71,10 @@ public class TemperatureService {
                     dtoList.add(temp);
                 }
             });
+
+            // https://www.baeldung.com/java-reverse-arraylist
+            Collections.reverse(dtoList);
+
             return ResponseEntity.ok(dtoList);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
