@@ -1,5 +1,7 @@
 package com.example.arduino_temp_checker_server.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +27,12 @@ public class TemperatureService {
         }
     }
 
+    public ResponseEntity<List> getAllTemps() {
+        try {
+            List<Temperature> list = temperatureRepository.findAll();
+            return ResponseEntity.ok(list);
+        } catch (Exception e) {
+            return ResponseEntity.noContent().build();
+        }
+    }
 }

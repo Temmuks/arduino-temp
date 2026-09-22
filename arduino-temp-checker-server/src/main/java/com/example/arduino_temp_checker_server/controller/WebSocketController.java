@@ -1,6 +1,7 @@
 package com.example.arduino_temp_checker_server.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -11,6 +12,7 @@ import com.example.arduino_temp_checker_server.service.TemperatureService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 public class WebSocketController {
@@ -30,6 +32,11 @@ public class WebSocketController {
         messagingTemplate.convertAndSend("/topic/temp", temp);
 
         return temperatureService.addTemp(temp);
+    }
+
+    @GetMapping("/temps")
+    public ResponseEntity<List> getAllTemps() {
+        return temperatureService.getAllTemps();
     }
 
 }
