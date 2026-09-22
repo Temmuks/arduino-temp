@@ -2,7 +2,7 @@
 #include <Arduino_LED_Matrix.h>
 #include <ArduinoHttpClient.h>
 
-#include "frames.h"  
+#include "frames.h"
 #include "secrets.h"
 
 char ssid[] = SECRET_SSID;
@@ -17,7 +17,7 @@ ArduinoLEDMatrix matrix;
 
 void setup() {
   // put your setup code here, to run once:
-  
+
   Serial.begin(9600);
 
   matrix.begin();
@@ -26,18 +26,20 @@ void setup() {
 
   WiFi.begin(ssid, password);
 
-  while(WiFi.status() != WL_CONNECTED){
+  while (WiFi.status() != WL_CONNECTED) {
     Serial.println("...");
     delay(1000);
   }
 
   Serial.println("Connected!");
   matrix.loadFrame(happy);
+
+  delay(1000);
 }
 
 void loop() {
   //Check if wifi is connected every loop
-    if(WiFi.status() == 3){
+  if (WiFi.status() == 3) {
     matrix.loadFrame(happy);
     delay(500);
   } else {
@@ -45,8 +47,14 @@ void loop() {
     delay(500);
   }
 
-  String postData = "{\"temp\": 1}";
+  postTemp(50, client);
 
+  delay(2000);
+}
+
+
+void postTemp(int newTemp, HttpClient client) {
+  String postData = String("{\"temp\":") + newTemp + "}";
   Serial.println("Sending postData...");
 
   client.beginRequest();
@@ -62,10 +70,8 @@ void loop() {
   int statusCode = client.responseStatusCode();
   String response = client.responseBody();
 
-  Serial.println("Status code: ");
-  Serial.print(statusCode);
+  Serial.print("Status code: ");
+  Serial.println(statusCode);
   Serial.print("Response: ");
-  Serial.print(response);
-
-  delay(2000);
+  Serial.println(response);
 }
