@@ -13,7 +13,10 @@ const TempComponent = () => {
     const d = new Date(Date.now());
 
     const h = d.getHours().toString();
-    const m = d.getMinutes().toString();
+    let m = d.getMinutes().toString();
+    if (d.getMinutes() < 10) {
+      m = "0" + d.getMinutes().toString();
+    }
 
     const updateTime = h + ":" + m;
     setTime(updateTime);
@@ -33,10 +36,12 @@ const TempComponent = () => {
   }, [client]);
 
   return (
-    <div>
-      <h1>The current temperature is:</h1>
-      <h3>Latest update: {time}</h3>
-      <h2>{temp} °C</h2>
+    <div className="divWrapper">
+      <div className="box">
+        <h3>Current temperature outside</h3>
+        <h3>{temp} °C</h3>
+        <h4>Latest update: {time}</h4>
+      </div>
     </div>
   );
 };

@@ -8,6 +8,9 @@
 #include "frames.h"
 #include "secrets.h"
 
+//Referenser
+//https://arduinomodules.info/ky-001-temperature-sensor-module/
+
 //Wifi settings
   char ssid[] = SECRET_SSID;
   char password[] = SECRET_PASS;

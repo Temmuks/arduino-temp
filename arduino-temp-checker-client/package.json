@@ -13,11 +13,13 @@
     "@stomp/stompjs": "^7.3.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "recharts": "^3.9.0",
     "sockjs": "^0.3.24",
     "sockjs-client": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@recharts/devtools": "^0.0.18",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
