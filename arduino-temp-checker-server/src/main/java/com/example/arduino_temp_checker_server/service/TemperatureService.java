@@ -67,6 +67,7 @@ public class TemperatureService {
                     temp.setDate(date);
                     temp.setMin(stats.getMin());
                     temp.setMax(stats.getMax());
+                    temp.setAverage(stats.getAverage());
 
                     dtoList.add(temp);
                 }

@@ -12,13 +12,7 @@ import {
 import type { TempType } from "../types/TempType";
 import ApiFetch from "../api/ApiFetch";
 
-type MockDataType = {
-  min: number;
-  max: number;
-  date: string;
-};
-
-const Typed = createHorizontalChart<MockDataType, string, number>()({
+const Typed = createHorizontalChart<TempType, string, number>()({
   XAxis,
   YAxis,
   Tooltip,
@@ -42,7 +36,7 @@ const ChartComponent = () => {
   return (
     <div className="chartWrapper">
       <div className="chart">
-        <h3>This weeks min and max temperatures</h3>
+        <h3>The past seven days min and max temperatures</h3>
         <div
           style={{
             display: "flex",
@@ -64,7 +58,7 @@ const ChartComponent = () => {
             margin={{
               top: 5,
               right: 70,
-              left: 70,
+              left: 60,
               bottom: 60,
             }}
           >
@@ -77,7 +71,7 @@ const ChartComponent = () => {
               tick={{ angle: -45, textAnchor: "end" }}
             />
             <Typed.YAxis
-              width="auto"
+              width={50}
               domain={[-30, 30]}
               stroke="rgb(228, 129, 0)"
             />
@@ -93,13 +87,19 @@ const ChartComponent = () => {
             <Typed.Line
               dataKey="min"
               fill="rgb(0, 195, 255)"
-              stroke="rgb(0, 17, 167)"
+              stroke="rgb(0, 119, 255)"
               strokeWidth={2}
             />
             <Typed.Line
               dataKey="max"
               fill="rgb(0, 0, 0)"
               stroke="rgb(255, 0, 0)"
+              strokeWidth={2}
+            />
+            <Typed.Line
+              dataKey="average"
+              fill="rgb(0, 0, 0)"
+              stroke="rgb(255, 208, 0)"
               strokeWidth={2}
             />
           </Typed.LineChart>
