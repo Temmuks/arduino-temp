@@ -12,10 +12,13 @@ const TempComponent = () => {
 
     const d = new Date(Date.now());
 
-    const h = d.getHours().toString();
+    let h = d.getHours().toString();
     let m = d.getMinutes().toString();
     if (d.getMinutes() < 10) {
       m = "0" + d.getMinutes().toString();
+    }
+    if (d.getHours() < 10) {
+      h = "0" + d.getHours().toString();
     }
 
     const updateTime = h + ":" + m;
