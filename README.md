@@ -58,8 +58,8 @@ Begin by cloning down the project using `git clone git@github.com:Temmuks/arduin
 ### GET endpoints
 * `GET` /temp/chartdata: Returns a list of data containing Date, min temp, max temp, and average temp
   #### Statuscodes
-  `200` OK, the server sucessfully handled your request. </br>
-  `400` BADREQUEST, The server failed to handle your request. </br>
+  `200, OK` The server sucessfully handled your request. </br>
+  `400, BADREQUEST` The server failed to handle your request.
   #### Response example
   ```
   [
@@ -99,8 +99,8 @@ Begin by cloning down the project using `git clone git@github.com:Temmuks/arduin
 ### POST endpoints
 * `POST` /temp : Saves incomeing temperature to the database, and also converts and sends the temperature </br> to clients subscribed to `/topic/temp`
     #### Statuscodes
-  `200` OK, the server sucessfully handled your request. </br>
-  `400` BADREQUEST, The server failed to handle your request.
+  `200, OK` The server sucessfully handled your request. </br>
+  `400, BADREQUEST` The server failed to handle your request.
   #### Request example
 
 
