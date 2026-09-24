@@ -46,7 +46,7 @@ public class TemperatureService {
 
     // https://www.geeksforgeeks.org/java/java-util-intsummarystatistics-class-with-examples/
     // https://www.baeldung.com/java-groupingby-collector
-    public ResponseEntity<List<TempDTO>> getMinMaxTemp() {
+    public ResponseEntity<List<TempDTO>> getChartData() {
 
         try {
             List<Temperature> tempList = temperatureRepository.findAll();

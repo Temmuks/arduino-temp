@@ -40,16 +40,10 @@ public class WebSocketController {
         return temperatureService.getAllTemps();
     }
 
-    @GetMapping("/temp/average")
-    public String getAverageTemp() {
-        // Hämta medeltemp senaste veckan
-        return new String();
-    }
-
-    @GetMapping("/temp/minmax")
+    @GetMapping("/temp/chartdata")
     public ResponseEntity<List<TempDTO>> getMinMaxTemp() {
 
-        return temperatureService.getMinMaxTemp();
+        return temperatureService.getChartData();
     }
 
 }
