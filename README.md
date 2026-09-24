@@ -3,4 +3,5 @@
 This will be a schoolproject to learn how to send information from a sensor to a homepage via arduino.
 
 ## Architecture
-<img width="1092" height="904" alt="image" src="https://github.com/user-attachments/assets/8d12c958-88cd-4ca7-901b-f2d1239ab5c4" />
+<img width="808" height="785" alt="image" src="https://github.com/user-attachments/assets/0a16ad80-b577-42ff-bd1b-d8e372c4211c" />
+
