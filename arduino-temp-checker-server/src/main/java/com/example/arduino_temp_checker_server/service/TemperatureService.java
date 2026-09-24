@@ -35,7 +35,7 @@ public class TemperatureService {
         }
     }
 
-    public ResponseEntity<List> getAllTemps() {
+    public ResponseEntity<List<Temperature>> getAllTemps() {
         try {
             List<Temperature> list = temperatureRepository.findAll();
             return ResponseEntity.ok(list);
@@ -46,7 +46,7 @@ public class TemperatureService {
 
     // https://www.geeksforgeeks.org/java/java-util-intsummarystatistics-class-with-examples/
     // https://www.baeldung.com/java-groupingby-collector
-    public ResponseEntity<List> getMinMaxTemp() {
+    public ResponseEntity<List<TempDTO>> getMinMaxTemp() {
 
         try {
             List<Temperature> tempList = temperatureRepository.findAll();

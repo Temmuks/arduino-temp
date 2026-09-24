@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
+import com.example.arduino_temp_checker_server.dto.TempDTO;
 import com.example.arduino_temp_checker_server.model.Temperature;
 import com.example.arduino_temp_checker_server.service.TemperatureService;
 
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class WebSocketController {
@@ -36,7 +36,7 @@ public class WebSocketController {
     }
 
     @GetMapping("/temps")
-    public ResponseEntity<List> getAllTemps() {
+    public ResponseEntity<List<Temperature>> getAllTemps() {
         return temperatureService.getAllTemps();
     }
 
@@ -47,7 +47,7 @@ public class WebSocketController {
     }
 
     @GetMapping("/temp/minmax")
-    public ResponseEntity<List> getMinMaxTemp() {
+    public ResponseEntity<List<TempDTO>> getMinMaxTemp() {
 
         return temperatureService.getMinMaxTemp();
     }
