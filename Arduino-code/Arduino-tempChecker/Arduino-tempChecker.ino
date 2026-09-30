@@ -20,6 +20,7 @@
   char api[] = SECRET_API;
   int port = 8080;
   char endpoint[] = "/temp";
+  char apiKey[] = API_KEY;
 
 // Client Inits
   WiFiClient wifi;
@@ -87,6 +88,7 @@ void postTemp(int newTemp, HttpClient client) {
 
   client.sendHeader("Content-Type", "application/json");
   client.sendHeader("Content-Length", postData.length());
+  client.sendHeader("x-api-key", apiKey);
 
   client.beginBody();
   client.print(postData);
