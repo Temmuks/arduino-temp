@@ -29,14 +29,16 @@ To get started you need the following:
 
 Begin by cloning down the project using `git clone git@github.com:Temmuks/arduino-temp.git`
 
+Generate an API key using a [**UUID Generator**](https://www.uuidgenerator.net/)
+
 ### Setting up the Arduino
 * Start with setting up your Arduino using the following scheme
 <img width="1106" height="1056" alt="image" src="https://github.com/user-attachments/assets/31378fd5-b4f2-4879-a221-318478c05bb6" />
  
 * Then plug in your power source.
 * Open Arduino-tempChecker.ino in your Arduino IDE
-* Change name of `secrets.h.example` to `secrets.h`
-* Change SECRET_SSID to your wifi name, SECRET_PASS to your wifi password and SECRET_API to your backends IP </br> (You can get this by typing ipconfig in your cmd and copy the Ipv4 adress")
+* Change name of `secrets_example.h` to `secrets.h`
+* Change SECRET_SSID to your wifi name, SECRET_PASS to your wifi password, API_KEY to the generated UUID and SECRET_API to your backends IP </br> (You can get this by typing ipconfig in your cmd and copy the Ipv4 adress")
 * Save the `secrets.h` file and upload your code to the arduino by pressing <img width="33" height="28" alt="image" src="https://github.com/user-attachments/assets/311ae904-739d-49c0-8d2e-1cf2844672af" />
 * If the physical Arduino now shows a happy face on the led display you are connected to wifi, if it shows a warning triangle you are not connected!
 
@@ -44,6 +46,7 @@ Begin by cloning down the project using `git clone git@github.com:Temmuks/arduin
 * Go to `\Arduino-temp\arduino-temp-checker-server` and open this with your VSC
 * Change name of `.env.example` to `.env`
 * Change MONGO_URI to your mongoDB URI
+* Change API_KEY to the generated UUID
 * Run the application using the debugger or use `./mvnw spring-boot:run`
 
 ## Setting up the frontend
