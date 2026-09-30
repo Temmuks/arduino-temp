@@ -51,7 +51,7 @@ void setup() {
 
 void loop() {
   //Check if wifi is connected every loop and updates the LED screen with a happy face if it is connected, else it will show a warning on the LED screen!
-  if (WiFi.status() != WL_CONNECTED) {
+  if (WiFi.status() == WL_CONNECTED) {
     matrix.loadFrame(happy);
     delay(500);
   } else {
